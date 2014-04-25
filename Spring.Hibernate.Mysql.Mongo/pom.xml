@@ -1,0 +1,277 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>org.gvignesh</groupId>
+  <artifactId>Spring.Hibernate.Mysql.Mongo</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <name>Java-Spring-Hibernate-Mysql-Mongo</name>
+  <description>Template ready to use for Java, Spring &amp; Hibernate, Mysql &amp; Mongo</description>
+  
+  <properties>
+  
+   	<!-- Java Version -->
+  	<javac.version>1.7</javac.version>
+  	
+  	<!-- jar dependencies versions -->
+    <log4j.version>1.2.17</log4j.version>
+    <slf4j.version>1.6.1</slf4j.version>
+    
+    <!-- Spring Version -->
+    <spring.version>3.2.2.RELEASE</spring.version>
+    
+    <!-- LOG4J -->
+    <log4j.root.level>DEBUG</log4j.root.level>
+    <log4j.log.dir>{user.home}</log4j.log.dir>	
+    
+    <!-- Annotations -->
+    <javax.version>1.2</javax.version>
+    
+    <!-- DB -->
+	<mysql.version>5.1.9</mysql.version>
+	
+	<!-- Hibernate Version -->
+	<hibernate.version>3.3.2.GA</hibernate.version>
+	
+	<!-- Hibernate Annotation Version -->
+	<hibernate.annotate.version>3.4.0.GA</hibernate.annotate.version>
+	
+	<!-- 
+	<mongo.hostname>${mongo.hostname}</mongo.hostname>
+    <mongo.port>${mongo.port}</mongo.port>
+    <mongo.username></mongo.username>
+    <mongo.password></mongo.password>
+    <mongo.db.name>${mongo.db.name}</mongo.db.name>
+     -->
+  </properties>
+  
+  <dependencies>
+  <!-- Spring framework Core -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-core</artifactId>
+            <version>${spring.version}</version>
+            <exclusions>
+				<exclusion>
+					<groupId>commons-logging</groupId>
+					<artifactId>commons-logging</artifactId>
+				</exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-orm</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context-support</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-aop</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-jms</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+        <dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-dao</artifactId>
+			<version>2.0.3</version>
+		</dependency>
+		            
+     <!-- Mysql -->
+     <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>${mysql.version}</version>
+     </dependency>
+     	<!-- Hibernate -->
+      	<dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-core</artifactId>
+            <version>${hibernate.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-annotations</artifactId>
+            <version>${hibernate.annotate.version}</version>
+        </dependency>
+ 
+		<!-- Hibernate library dependecy start -->
+		<dependency>
+			<groupId>dom4j</groupId>
+			<artifactId>dom4j</artifactId>
+			<version>1.6.1</version>
+		</dependency>
+	 	
+	 	<dependency>
+			<groupId>javassist</groupId>
+			<artifactId>javassist</artifactId>
+			<version>3.12.1.GA</version>
+		</dependency>
+			
+		<dependency>
+			<groupId>commons-logging</groupId>
+			<artifactId>commons-logging</artifactId>
+			<version>1.1.1</version>
+		</dependency>
+	 
+		<dependency>
+			<groupId>commons-collections</groupId>
+			<artifactId>commons-collections</artifactId>
+			<version>3.2.1</version>
+		</dependency>
+	 
+		<dependency>
+			<groupId>cglib</groupId>
+			<artifactId>cglib</artifactId>
+			<version>2.2</version>
+		</dependency>
+		<!-- Hibernate library dependecy end -->
+     
+     <!-- Javax Annotations -->
+     	<dependency>
+			<groupId>javax.annotation</groupId>
+			<artifactId>javax.annotation-api</artifactId>
+			<version>${javax.version}</version>
+		</dependency>
+	 <!-- Logging dependencies -->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>${slf4j.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>jcl-over-slf4j</artifactId>
+            <version>${slf4j.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-log4j12</artifactId>
+            <version>${slf4j.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>log4j</groupId>
+            <artifactId>log4j</artifactId>
+            <version>${log4j.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>log4j</groupId>
+            <artifactId>apache-log4j-extras</artifactId>
+            <version>${log4j.version}</version>
+         </dependency>
+               
+		<!-- Spring data mongodb -->
+		<dependency>
+			<groupId>org.springframework.data</groupId>
+			<artifactId>spring-data-mongodb</artifactId>
+			<version>1.2.0.RELEASE</version>
+		</dependency>
+        
+        <!-- Database Pooling -->
+        <dependency>
+			<groupId>c3p0</groupId>
+			<artifactId>c3p0</artifactId>
+			<version>0.9.1.2</version>
+		</dependency>
+		
+		<!-- Java Mongo DB Driver -->
+		<dependency>
+			<groupId>org.mongodb</groupId>
+			<artifactId>mongo-java-driver</artifactId>
+			<version>2.11.4</version>
+		</dependency>
+		
+		<!-- Generic Hibernate Template -->
+		<!-- This first dependency includes all the JPA implementations for the DAOs -->
+		<dependency>
+		        <groupId>com.googlecode.genericdao</groupId>
+		        <artifactId>dao</artifactId>
+		        <version>1.2.0</version> <!-- use current version -->
+		</dependency>
+		<!-- This second one includes the Hibernate Entity Manager plugin for the framework -->
+		<dependency>
+		        <groupId>com.googlecode.genericdao</groupId>
+		        <artifactId>search-jpa-hibernate</artifactId>
+		        <version>1.2.0</version> <!-- use current version -->
+		</dependency>
+		            
+  </dependencies>
+  
+<pluginRepositories>
+	<pluginRepository>
+		<id>onejar-maven-plugin.googlecode.com</id>
+		<url>http://onejar-maven-plugin.googlecode.com/svn/mavenrepo</url>
+	</pluginRepository>
+</pluginRepositories>
+
+<build>
+<finalName>JavaTemplate</finalName>
+	<plugins>
+       <plugin>
+           <groupId>org.apache.maven.plugins</groupId>
+           <artifactId>maven-jar-plugin</artifactId>
+           <version>2.3.2</version>
+           <configuration>
+               <archive>
+                   <manifest>
+                       <mainClass>org.gvignesh.loader.BootLoader</mainClass>
+                   </manifest>
+               </archive>
+           </configuration>
+       </plugin>
+       <plugin>
+           <groupId>org.dstovall</groupId>
+           <artifactId>onejar-maven-plugin</artifactId>
+           <version>1.4.4</version>
+           <executions>
+               <execution>
+                   <configuration>
+                       <onejarVersion>0.97</onejarVersion>
+                       <attachToBuild>true</attachToBuild>
+                       <classifier>onejar</classifier>
+                   </configuration>
+                   <goals>
+                       <goal>one-jar</goal>
+                   </goals>
+               </execution>
+           </executions>
+       </plugin>
+       
+       <plugin>
+           <groupId>org.apache.maven.plugins</groupId>
+           <artifactId>maven-compiler-plugin</artifactId>
+           <configuration>
+               <source>${javac.version}</source>
+               <target>${javac.version}</target>
+           </configuration>
+       </plugin>
+       
+	</plugins>
+	
+	<resources>
+  		<resource>
+  			<directory>src/main/resources</directory>
+  			<filtering>true</filtering>
+  			<excludes>
+  				<exclude>**/applicationContext-init.xml</exclude>
+  				<exclude>**/applicationContext-mongo.xml</exclude>
+  			</excludes>
+  		</resource>
+		<resource>
+			<directory>src/main/resources</directory>
+			<filtering>false</filtering>
+			<includes>
+				<include>**/applicationContext-init.xml</include>
+				<include>**/applicationContext-mongo.xml</include>
+			</includes>
+		</resource>
+	</resources>
+</build>  
+  
+</project>

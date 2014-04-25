@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans 
+  xmlns="http://www.springframework.org/schema/beans" 
+  xmlns:amq="http://activemq.apache.org/schema/core"
+  xmlns:jms="http://www.springframework.org/schema/jms"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:context="http://www.springframework.org/schema/context"
+  xmlns:tx="http://www.springframework.org/schema/tx"
+  xsi:schemaLocation="
+    http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+    http://activemq.apache.org/schema/core http://activemq.apache.org/schema/core/activemq-core-5.5.0.xsd
+    http://www.springframework.org/schema/jms http://www.springframework.org/schema/jms/spring-jms-3.0.xsd
+    http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
+    http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-2.5.xsd">
+    
+    <bean class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor"/>
+    
+    <bean id="propSource" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+	  <property name="locations" value="classpath:project.properties" />
+	</bean>
+
+	<bean id="dataSource"
+		class="${mysql.pool.datasource}">
+		<property name="driverClass" value="${mysql.driver}" />
+		<property name="jdbcUrl" value="${mysql.url}" />
+		<property name="user" value="${mysql.username}" />
+		<property name="password" value="${mysql.password}" />
+		
+		<property name="acquireIncrement"><value>1</value></property>
+        <property name="initialPoolSize"><value>3</value></property>
+        <property name="minPoolSize"><value>3</value></property>
+        <property name="maxPoolSize"><value>50</value></property>
+        <property name="maxIdleTime"><value>28000</value></property>
+        <property name="maxIdleTimeExcessConnections"><value>600</value></property>
+        <property name="idleConnectionTestPeriod"><value>3600</value></property>
+        <property name="maxStatements"><value>0</value></property>  <!-- 0 means: statement caching is turned off.  -->
+        <property name="numHelperThreads"><value>3</value></property>  <!-- 3 is default -->
+	</bean>
+
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">
+
+		<property name="dataSource" ref="dataSource" />
+
+		<property name="configLocation">
+			<value>classpath:hibernate.cfg.xml</value>
+		</property>
+		<property name="configurationClass">
+			<value>org.hibernate.cfg.AnnotationConfiguration</value>
+		</property>
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
+				<prop key="hibernate.show_sql">true</prop>
+				<prop key="hibernate.format_sql">true</prop>
+				<prop key="hibernate.jdbc.batch_size">20</prop>
+				<prop key="hibernate.connection.release_mode">auto</prop>
+				<prop key="hibernate.jdbc.initialSize">10</prop>
+				<prop key="hibernate.dbcp.maxactive">50</prop>
+				<prop key="hibernate.dbcp.maxIdle">50</prop>
+				<prop key="hibernate.dbcp.minIdle">0</prop>
+			</props>
+		</property>		
+	</bean>
+
+    <bean id="transactionManager" class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+        <property name="sessionFactory" ref="sessionFactory"/>
+        <property name="dataSource" ref="dataSource" />
+    </bean>
+
+    <tx:annotation-driven transaction-manager="transactionManager" />
+
+    <!-- Activates scanning of @Autowired -->
+    <context:annotation-config/>
+    <context:component-scan base-package="org.gvignesh" />
+
+</beans>
