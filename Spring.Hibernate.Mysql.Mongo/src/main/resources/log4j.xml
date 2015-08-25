@@ -55,7 +55,7 @@
         <level value="WARN"/>
     </logger>
    
-    <logger name="com.piqube">
+    <logger name="org.gvignesh">
         <level value="DEBUG"/>
     </logger>
 
